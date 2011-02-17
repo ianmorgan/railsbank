@@ -1,0 +1,57 @@
+
+<%= observe_radio_button('app[additional_customer_has_same_address]',
+      '$("#addCustAddress").hide();' ,'$("#addCustAddress").show();') %>
+
+<div class="stepimage">
+    <%= image_tag('/images/abank/step2.png', :alt=>'Step Two') %>
+</div>
+<div class="formitems">
+    <h1>2. Account Details </h1>
+    <div class="bodytext">Mandatory fields are marked with an asterix(*)</div>
+    
+    <%= render_error_messages @app, @primary, @primary.addresses.main, @primary.addresses.contact%>
+
+    <h2>Your Details </h2>
+
+    <% form_for :data , :url => { :action => "update_account_details", :method => "POST" }do |f| %>
+        <%= render :partial => "account",
+		   :locals => { :applicant => @primary, :prefix => "primary" }  %>
+    
+        <% if @app.joint_account %>
+            <h2>Additional Person's Details</h2>
+        
+            <div style="height: 10px"></div>
+            <div class="radiobuttons"> 
+            <fieldset >
+                 <legend class="labelleft">Is the addtional customer at the same address?</legend>
+                  <div class="button" style="left: 340px; "  >
+                    <label for="yes">Yes</label>
+                    <%=  radio_button("app", "additional_customer_has_same_address", "true") %>
+                  </div>
+                  <div class="button" style="left: 360px; ">
+                    <label for="no">No</label>
+                    <%=  radio_button("app", "additional_customer_has_same_address", "false") %>
+                  </div>
+            </fieldset>
+            </div>
+        
+            <div id="addCustAddress">
+                <%= render :partial => "account",  :locals => { :applicant => @joint, :prefix => "joint" }  %>
+            </div>
+    
+        <% end %>
+        <div class="formSubmitButtons">
+	    <%= f.submit "Next", :name => "submit", :class => "nextbutton"%>
+	    <%= f.submit "Prev", :name => "submit", :class => "prevbutton"%>
+         </div>
+    <% end %>
+         
+</div>
+
+<% content_for :banner do %>
+  <%= image_tag('/images/abank/productandsecure_banner.png', :alt=>'Product Logo') %>
+<% end %>
+
+
+
+

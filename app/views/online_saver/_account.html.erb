@@ -1,0 +1,52 @@
+<script type="text/javascript">
+      $(document).ready(function(){
+      
+        function show_or_hide_contact_address() {
+          selected = $("input[name='<%=prefix%>[contact_address_same]']:checked").val();
+          if (selected == "true") {
+            $("#_<%=prefix.split('[')[0]%>_contactAddress").hide ();
+          }
+          else {
+             $("#_<%=prefix.split('[')[0]%>_contactAddress").show();
+          }
+        }
+
+	$("input[name='<%=prefix%>[contact_address_same]']").click(function(event){
+          show_or_hide_contact_address();
+	});
+         
+        show_or_hide_contact_address();
+      });
+</script>
+
+
+<div class="vform">
+            
+      <h3>Residential Address </h3>
+      <% railsbank_fields_for "#{prefix}[addresses][main]", applicant.addresses.main do | f | %>
+        <%= render :partial => "address", :locals => { :address => f }  %>
+      <% end %>
+      
+      <div style="height: 10px"></div>
+      <div class="radiobuttons"> 
+         <fieldset >
+             <legend class="labelleft">Is this your contact address?</legend>
+              <div class="button" style="left: 250px; ">
+                <label for="yes">Yes</label>
+                <%=  radio_button(prefix, "contact_address_same", "true") %>
+              </div>
+              <div class="button" style="left: 260px; ">
+                <label for="no">No</label>
+                <%=  radio_button(prefix, "contact_address_same", "false") %>
+              </div>
+         </fieldset>
+       </div>
+     
+      <div id="_<%=prefix.split('[')[0]%>_contactAddress">
+        <h3>Postal Address </h3>
+        <% railsbank_fields_for "#{prefix}[addresses][contact]", applicant.addresses.contact do | f | %>
+          <%= render :partial => "address",  :locals => { :address => f }  %>
+        <% end %>
+      </div>
+
+</div>

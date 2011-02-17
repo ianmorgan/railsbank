@@ -1,0 +1,10 @@
+
+<h2>Listing all Applications</h2>
+
+<% for app in @apps%>
+  <%=app.id%> -
+  <%=h app.applicants.primary.formatted_name%> -
+  Last changed: <%= distance_of_time_in_words_to_now(app.updated_at,true)%> ago
+   <%= link_to( "edit" , { :action => 'edit_application', :id => "#{app.id}"  } ) %><br>
+<% end %>
+

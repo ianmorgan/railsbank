@@ -1,0 +1,8 @@
+<div class="reviewitems">
+  <label>Name:</label><span><%= applicant.formatted_name %></span><p>
+  <label>Gender:</label><span><%= applicant.formatted_gender %></span><p>
+  <label>Date of Birth:</label><span> <%= applicant.dob.to_formatted_s (:australian) %></span><p>
+  <label>Occupation:</label><span> <%= applicant.occupation %></span><p>  
+  <label>Existing Customer:</label><span> <%= applicant.existing_customer ? "Yes" : "No"%></span><p>
+  <%= link_to( "edit" , { :action => 'personal_details', :anchor => "#{applicant.applicant_type}" , :class => "editbutton" } ) %>
+</div>

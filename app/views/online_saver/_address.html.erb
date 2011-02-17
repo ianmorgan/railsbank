@@ -1,0 +1,56 @@
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var $state_aus = $("#<%="#{address.underscored_object_name}_state_aus"%>");
+    var $state_overseas = $("#<%="#{address.underscored_object_name}_state_overseas"%>");
+    var $country = $("#<%=address.underscored_object_name%>_country");
+   
+    var $postcode_aus = $("#<%="#{address.underscored_object_name}_postcode_aus"%>");
+    var $postcode_overseas = $("#<%="#{address.underscored_object_name}_postcode_overseas"%>");
+   
+    
+    function show_state_and_postcode() {
+      if ($country.val() == "Australia" ){
+        $state_aus.show();
+        $postcode_aus.show();
+        $state_overseas.hide();
+        $postcode_overseas.hide();
+      }
+      else {
+        $state_aus.hide();
+        $postcode_aus.hide();
+        $state_overseas.show();
+        $postcode_overseas.show(); 
+      }
+    }
+    
+    $country.change(function(){ 
+      show_state_and_postcode();  
+    });
+    
+    show_state_and_postcode();
+  });
+</script>
+
+<%= address.select(:country,
+                  @countries) %>
+<%= address.text_field :line1 %>
+<%= address.text_field :line2, :optional => true %>
+<%= address.text_field :suburb %>
+
+<%= address.select(:state ,
+                    ["VIC", "NSW", "QLD", "WA", "SA", "NT", "TAS", "ACT"] ,
+                    :include_blank => true,
+                    :field_id => "#{address.underscored_object_name}_state_aus" ) %>
+<%= address.text_field(:state_province,
+                       :label_text => "State/Province",
+                       :field_id => "#{address.underscored_object_name}_state_overseas") %>
+<%= address.text_field :post_code,
+                       :size => 4,
+                       :field_id => "#{address.underscored_object_name}_postcode_aus" %>
+<%= address.text_field :zip_post_code,
+                       :label_text => "Zip/Postcode",
+                       :size => 10,
+                       :field_id => "#{address.underscored_object_name}_postcode_overseas" %>
+

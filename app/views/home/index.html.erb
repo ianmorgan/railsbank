@@ -1,0 +1,31 @@
+<div id="header">
+
+  <h1>Welcome </h1>
+      <h2>You&rsquo;re visiting the railsbank!</h2>
+  </div>
+
+        
+        <div id="body-content">
+          <h1>Whats this about</h1>
+          <p>
+          This is a small demo of a Ruby on Rails application
+          <a href="http://www.linkedin.com/in/ianjmorgan">I</a> have put together.
+          </p>
+          
+          <p>
+          It started as a port of a simple Adobe Flex application that
+          seemed to be taking forever to develop. I thought I could achieve
+          something similar using Ruby on Rails for far less effort.
+          </p>
+         
+          <p> 
+          The site provides an online application for a bank account at the
+          fictitious railsbank (no bailout required!). You can start a <%= link_to 'new application', :controller => 'online_saver', :action => 'preconditions', :site => 'public' %>
+          or logon as an internal user to
+          <%= link_to 'view and modify', :controller => 'process_applications', :action => 'list', :site => 'internal' %> submitted applications
+          </p>
+          
+          <p>Best viewed using <a href="http://www.firefox.com">Firefox</a>.
+          
+          
+        </div>

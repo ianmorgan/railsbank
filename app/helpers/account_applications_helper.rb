@@ -1,0 +1,4 @@
+module AccountApplicationsHelper
+  
+
+end

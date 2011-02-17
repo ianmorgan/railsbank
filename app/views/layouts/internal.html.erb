@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>aBank Online Saver - <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'abank' %>
+  
+  <style type="text/css" media="screen">
+  .stepimage{
+        padding-top:10px;
+    }
+  </style>
+</head>
+<body>
+<%= javascript_include_tag "jquery-1.2.6.js" %>
+
+<%= link_to "[railsBank Home]", :controller => 'home'%>
+<%= link_to "[All Applications]", :controller => "process_applications", :action => "list" %>
+
+<div style="padding-right:120px; height:110px; ">
+  <%= yield :banner %>
+</div>
+<%= yield  %>
+
+</body>
+</html>

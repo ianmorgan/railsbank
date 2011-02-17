@@ -1,0 +1,20 @@
+
+<div class="stepimage">
+    <%= image_tag('/images/abank/complete.png', :alt=>'Step Three') %>
+</div>
+<div class="formitems">
+    <h1>Congratulations</h1>
+    
+    <p>
+      Your application has been accepted.
+      The confirmation code <strong><%= @app.confirmation_code %></strong>.
+    </p>
+    <p>
+      Please keep a record of this code.
+    </p>
+</div>
+
+
+<% content_for :banner do %>
+  <%= image_tag('/images/abank/productandsecure_banner.png', :alt=>'Product Logo') %>
+<% end %>

@@ -1,0 +1,56 @@
+
+<%= observe_radio_button('app[joint_account]', '$("#joint").show ();' ,'$("#joint").hide();') %>
+
+<div class="stepimage">
+    <%= image_tag('/images/abank/step1.png', :alt=>'Step One') %>
+</div>
+<div class="formitems">
+    <h1>1. About you</h1>
+    <div class="bodytext">Mandatory fields are marked with an asterix(*)</div>
+
+    <%= render_error_messages @primary, @joint, @app %>
+
+    <h2>Personal Details</a></h2>
+
+      <% form_for :data ,:url => { :action => "update_personal_details", :method => "POST" }, :builder => RailsbankFormBuilder do |f| %>
+          <div class="vform">
+	    
+	    <h3><a name="PRIMARY">Yourself</a></h3>
+	
+	    <% railsbank_fields_for :primary do | f | %>
+                 <%= render :partial => "applicant",  :locals => { :applicant => f }  %>
+            <% end %>
+
+           <div style="padding-top: 10px"> </div>
+           <fieldset style="border: 0px; visibilty: hidden; height: 30px"  >
+             <legend class="labelleft"><span class="mandatory">*</span>Do you wish to open a joint account? </legend>
+              <div style="position: relative; top: -25px; position: relative; left: 300px; display:inline-table">
+                <label for="yes">Yes</label>
+                <%=  radio_button(:app, :joint_account, "true") %>
+              </div>
+              <div style="position: relative; top : -25px; position: relative; left: 350px; display:inline-table">
+                <label for="no">No</label>
+                <%=  radio_button(:app, :joint_account, "false") %>
+              </div>
+           </fieldset>
+           
+           <div id="joint">
+             <h3><a name="JOINT">Additional Person</a></h3>
+              <% fields_for :joint, :builder => RailsbankFormBuilder do | joint | %>
+                  <%= render :partial => "applicant",  :locals => { :applicant => joint }  %>
+              <% end %>
+            </div>
+           
+           </div>
+          <div class="formSubmitButtons">
+	    <%= f.submit "Next", :name => "submit", :class => "nextbutton"%>
+	    <%= f.submit "Prev", :name => "submit", :class => "prevbutton"%>
+	   </div>
+      <% end %>
+          
+</div>
+
+<% content_for :banner do %>
+  <%= image_tag('/images/abank/productandsecure_banner.png', :alt=>'Product Logo') %>
+<% end %>
+

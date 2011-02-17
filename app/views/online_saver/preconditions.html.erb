@@ -1,0 +1,48 @@
+<div class="formitems">
+    <h1>Before you start..</h1>
+    <h2>Eligibility criteria</h2>
+    <ul>
+      <li>over 16 years of age</li>
+      <li>living in Australia OR an existing railsbank customer</li>
+    </ul>
+
+           <div class="bodytext">
+              To use this account, it must be linked to another railsbank account.&#xa;&#xa;
+	      If you are eligible, please contact our customer services centre on 180 232 232
+	      for assistance. If you are currently overseas but are planning on coming to
+	      Australia <%= link_to 'apply for a new railsbank account', :controller => 'docs', :action => 'new_accounts' %>.
+	     <h2>Terms and conditions</h2>
+
+           <ul class="links">
+	      <li>
+		<%= link_to 'Privacy and Confidentiality Conditions', :controller => 'docs', :action => 'privacy_and_confidentiality' %>
+              </li>
+	      <li>
+		<%= link_to 'Product Disclosure Statement', :controller => 'docs', :action => 'pds' %>
+	      </li>
+              <li>
+		<%= link_to 'Financial Services Guide', :controller => 'docs',  :action => 'fsg' %>
+	      </li>
+	      <li>
+		<%= link_to 'Promotional Material', :controller => 'docs',  :action => 'promotional' %>
+	      </li>
+	    </ul>
+
+	    <%= error_messages_for :app, :message => nil, :header_message => "Please fix the following problems" %>
+
+	    <% form_for :app , :url => { :action => "update_preconditions", :method => "POST" }do |f| %>
+              <ul class="vform">
+                  <li><span id="mandatory">*</span><%= f.check_box :accept_privacy %> <%= f.label :accept_privacy, 'I have read and accept the privacy and confidentiality conditions' %></li>
+                  <li><span id="mandatory">*</span><%= f.check_box :accept_read_documents %> <%= f.label :accept_read_documents , 'I acknowledge that I have had an opportunity to read the Product Disclosure Statement for this product and the Financial Services Guide' %></li>
+                  <li><span id="optional"> </span><%= f.check_box :accept_product_disclosure %> <%= f.label :accept_product_disclosure , 'I agree to receive the Product Disclosure Guide by accessing it electronically via www.railsbank.com and understand railsbank will not send a paper copy' %></li>
+                  <li><span id="optional"> </span><%= f.check_box :accept_promotional_material %> <%= f.label :accept_promotional_material , 'I wish to receive Promotional Material about railsbank' %></li>
+              </ul>
+            <%= f.submit "Next", :class => "nextbutton" %>
+          <% end %>
+          
+</div>
+
+<% content_for :banner do %>
+  <%= image_tag('/images/abank/productandsecure_banner.png', :alt=>'Product Logo') %>
+<% end %>
+

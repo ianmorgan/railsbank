@@ -1,0 +1,10 @@
+<div class="errorExplanation" id="errorExplanation">
+  <h2>Unable to continue due to <%= pluralize(error_messages.size, 'error') %>.</h2>
+  <p>There were problems with the following fields:</p>
+  <ul>
+  <% for error_message in error_messages %>
+    <li><%=h error_message %></li>
+  <% end %>
+  </ul>
+</div>
+

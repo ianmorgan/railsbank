@@ -1,0 +1,33 @@
+
+<div class="stepimage">
+    <%= image_tag('/images/abank/step3.png', :alt=>'Step Three') %>
+</div>
+<div class="formitems">
+    <h1>3. Review </h1>
+    <h2>Personal Details</h2>
+
+    <h3>Yourself</h3>
+    <%= render :partial => "review_applicant",  :locals => { :applicant => @primary }  %>
+    
+    <% if @app.joint_account %>
+        <h3>Additional Applicant</h3>
+        <%= render :partial => "review_applicant",  :locals => { :applicant => @joint}  %>
+    <% end %>
+    
+     <% form_for :app , :url => { :action => "complete", :method => "POST" }do |f| %>
+        <p>
+            Press the Next button below to complete your application.
+            After a few seconds a confimation receipt will be displayed and
+            we will start processing your new account application.
+            
+            Please keep a copy of the receipt number for your records.
+        </p>
+        <%= f.submit "Next", :name => "submit", :class => "nextbutton"%>
+      <% end %>
+	  
+</div>
+
+
+<% content_for :banner do %>
+  <%= image_tag('/images/abank/productandsecure_banner.png', :alt=>'Product Logo') %>
+<% end %>

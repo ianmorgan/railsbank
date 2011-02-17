@@ -1,0 +1,43 @@
+<script type="text/javascript">
+      $(document).ready(function(){
+      
+        function show_or_hide_security_codes() {
+          selected = $("input[name='<%= applicant.object_name %>[existing_customer]']:checked").val();
+        
+          if (selected == "false") {
+            $("#<%= applicant.object_name %>_securitycodes").show ();
+          }
+          else {
+             $("#<%= applicant.object_name %>_securitycodes").hide ();
+          }
+        }
+
+	$("input[name='<%= applicant.object_name %>[existing_customer]']").click(function(event){
+          show_or_hide_security_codes();
+	});
+         
+         show_or_hide_security_codes();
+
+      });
+</script>
+
+<%= applicant.select(:title, ["Mr", "Mrs", "Miss", "Ms", "Sir", "Doctor"] , {:include_blank => true}) %>
+<%= applicant.text_field :first_name %>
+<%= applicant.text_field :middle_name, :optional => true %>
+<%= applicant.text_field :surname %>
+<div class="lableleft"><span class="mandatory">*</span><%= applicant.label :gender, 'Gender' %><%=  applicant.radio_button(:gender, "M" ) %> Male <%= applicant.radio_button(:gender, "F" ) %> Female</div>
+<%= applicant.text_field :dob, :size => 10 %>
+<%= applicant.select(:occupation, ["Programmer", "Accountant", "CEO", "Doctor", "Chimney Sweep", "Test Pilot"]  , {:include_blank => true}) %>
+
+<div class="lableleft"><span class="mandatory">*</span><%= applicant.label :existing_customer, 'Existing customer' %><%=  applicant.radio_button(:existing_customer, "true" ) %> Yes <%= applicant.radio_button(:existing_customer, "false" ) %> No</div>
+
+<div id="<%= applicant.object_name %>_securitycodes">
+  <div class="lableleftwide"><span class="mandatory">*</span>
+    <%= applicant.label :security_code, 'Please chose a security code(combination of letters and number) ' %>
+    <%= applicant.password_field :security_code%>
+  </div>
+  <div class="lableleftwide"><span class="mandatory">*</span>
+    <%= applicant.label :security_code_confirmation, 'Please confirm security code' %>
+    <%= applicant.password_field :security_code_confirmation%>
+  </div>
+</div
