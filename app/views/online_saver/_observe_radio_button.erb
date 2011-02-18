@@ -1,0 +1,19 @@
+<script type="text/javascript">
+      $(document).ready(function(){
+        function show_or_hide_<%=method%>() {
+          selected = $("input[name='<%=button%>']:checked").val();
+          if (selected == "true") {
+            <%=on_selected%>;
+          }
+          else {
+             <%=on_deselected%>;
+          }
+        }
+
+	$("input[name='<%=button%>']").click(function(event){
+          show_or_hide_<%=method%>();
+	});
+         
+        show_or_hide_<%=method%>();
+      });
+</script>
