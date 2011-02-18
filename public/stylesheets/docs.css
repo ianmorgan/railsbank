@@ -1,0 +1,40 @@
+/* CSS Document */
+
+
+#footer {
+    padding-top: 40px;
+}
+  
+
+#productlogo {
+   clear: both;
+   padding-right: 120px;
+   padding-left: 120px;
+   background: url(images/productandsecure_banner.png) no-repeat top left;
+   padding-top: 300px;
+}
+
+.links li {
+	margin-left: -35px;
+	padding-left: 0px;
+	list-style: none;
+	margin-top: 5px;
+	text-decoration: none;
+}
+
+/* basic style for a number of form items layed out vertically */
+.vform li {
+	margin-left: -35px;
+	padding-left: 0px;
+	list-style: none;
+	margin-top: 5px;
+	text-decoration: none;
+}
+
+legend{
+    width: 120px;
+    padding-left: 4px;
+    display: inline-table;
+}
+
+
